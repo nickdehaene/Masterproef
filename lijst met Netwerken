@@ -1,12 +1,19 @@
 lijst met Mogelijke netwerken die we kunnen gebruiken met hun voor en nadelen:
-
+yolo vs yolov2 
+https://jonathan-hui.medium.com/real-time-object-detection-with-yolo-yolov2-28b1b93e2088#:~:text=Comparing%20with%20region%20based%20detectors,significantly%20while%20making%20it%20faster.
 YOLO:
-  pros:
+  pros: snel goed voor realtime proccesing
+        voorspellingen worden gegeven met 1 keer het netwerk te doorlopen
+        een gegeneralizeerd netwerk
+        regio detectie zorgt voor een kleinere zoekruimte voor de clasificatie
+        1 object per grid cell
 
-  Cons:
+  Cons: lagere accuracy dan yolov2
+        hogere localitatie errors dan yolov2
 
 YOLOv2:
-  pros:
+  pros: veel betere accuracy dan yolo
+        sneller dan yolo
   
   Cons:
   
