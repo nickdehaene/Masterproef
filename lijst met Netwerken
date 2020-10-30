@@ -9,7 +9,7 @@ YOLO:
         1 object per grid cell
 
   Cons: lagere accuracy dan yolov2
-        hogere localitatie errors dan yolov2
+        hogere localitatie errors dan yolov2 dus niet zo goed voor ons onderwerp
 
 YOLOv2:
   pros: veel betere accuracy dan yolo
