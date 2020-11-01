@@ -21,3 +21,7 @@ Resnet:
   pros:
   
   cons:
+  
+anchorbased RetinaNet 
+
+anchor-free FCOS 
