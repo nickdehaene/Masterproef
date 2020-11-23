@@ -33,3 +33,112 @@ University of Leuven, Belgium\\
 {\tt\small emile.carron@student.kuleuven.be}
 % For a paper whose authors are all at the same institution,
 }
+
+
+\maketitle
+% Remove page # from the first page of camera-ready.
+\ificcvfinal\thispagestyle{empty}\fi
+
+%%%%%%%%% ABSTRACT
+\begin{abstract}
+In this paper, we will explain how we created an automatic parking monitor and what was implemented to make such parking smarter and easier to use than a regular parking lot. The goal was to make a scale model of an automatic parking monitor system where the parking recognizes a free spot and where the driver will have a full guidance up to the free spot.
+\end{abstract}
+
+%%%%%%%%% BODY TEXT
+\section{Introductie}
+
+Overal waar men kijkt ziet men parkings voor de vele auto’s die rondrijden op  onze wegen. Iedereen heeft het wel al eens voorgehad dat men een parking binnenrijdt die aangeeft dat er nog plaats vrij is. Eénmaal in de parking is het dan toch moeilijk om deze vrije plaats te vinden. Het is vanuit deze problematiek dat wij een slimme parkeergarage hebben ontwikkeld. Hierdoor hoeft men nooit nog op zoek naar die ene vrije parkeerplaats in een overvolle parking.
+
+%-------------------------------------------------------------------------
+
+%------------------------------------------------------------------------
+\section{Related work}
+
+Today, a few automatically monitored parking lots or smart parking lots already exist. These parking lots are in general new ones, while old ones stay dumb. For those old ones, it is very expensive to transform a dumb parking lot into a smart one. Such transformation would require a lot of sensors that need to be installed in or above each parking space. Subsequently each sensor should be connected with a controller that will manage all of the sensors. But even then, a smart parking lot is not that smart. Many times, the parking lot only indicates whether there are places available. Such a smart parking lot only shows on which floor or on which row a free spot is available, but the driver will always need to actively search to locate the free spot. Sometimes a car ahead will take the last spot on that particular floor and the search can start all over again. In our solution every car gets a personalized route to the nearest free spot.
+
+Each parking spot will be equipped with a sensor and a led indicator. The sensor will check whether a particular spot is free and the indicator will indicate whether the spot is actually free or not. A range of LED’s on the floor will guide the driver to the particular available spot. The LED’s will be respectively green or red, to indicate the right pathway.
+
+
+%-------------------------------------------------------------------------
+
+
+
+
+%------------------------------------------------------------------------
+\section{Data and Framework}
+
+The project was based on 2 major pillars. The first part was to figure out how each component would work and how it is directed. The other part is the actual building process of the parking lot. In this paper, we will talk about which components were used and how they operate.
+
+\subsection{Components}
+In the scale model, a variety of components were used. At first it was determined how should be directed. It was decided to work with an Arduino Uno. In addition a lot of sensors and LED’s were used. Also, a pressure sensor was created for detection whether a car is entering or leaving the parking lot. The last part in the project was to place a barrier at the car park entrance and exit. Therefore a servo motor was used.
+
+\subsubsection{Arduino Uno}
+The Arduino Uno was the brain of the smart parking solution. It had to handle the direction of each component and to do all the thinking that makes the car park smart.
+
+\subsubsection{Sensors}
+For the sensor, an ultrasonic sensor was used. Such sensor has a low cost but perfectly fits our goal. The sensor works with an ultrasonic wave. It sends out a wave towards the object and through reflection of the wave on the car, an new incoming wave is received. This process is shown in figure 1 [1]. By knowing the time lapse between sending and receiving the wave, and the travel speed of an ultrasonic wave, the distance of the object can be calculated. If the distance between the object and the sensor, in the study case a car, is lower than a preset value, it is detected as a parked car. 
+
+\begin{figure}[H]
+\begin{center}
+
+   \includegraphics[width=1.0\linewidth]{sensor.eps}
+\end{center}
+   \caption{Explanation how the sensor works}
+\label{fig:long}
+\label{fig:onecol}
+\end{figure}
+
+
+
+\subsubsection{Pressure sensor}
+To detect whether a car arrives at the parking lot, a pressure sensor was created, which is pressed down by the arriving car. For this, 2 sheets of aluminum foil were used as conductor with cardboard in between. A hole was made in the cardboard so that when a car is placed on the sensor, the 2 sheets will make connection, which will cause conduction. Because of this, an electrical circuit will close and an Arduino pin will be connected to the ground and give a signal to the motor (see further). In such a manner, every time a car is being detected, the number of available spaces will be adjusted upwards or downwards, as the case may be. 
+
+\subsubsection{LED}
+The LED’s were also very important for this project. The LED’s demonstrate the path to follow towards the free spot. Two colors were used. Red and green, green being the path to follow towards the nearest available parking spot. In this respect an ordinary 2 color cathode led was used, which was easier than placing 2 different LED’s at all locations.[1] Each led had 3 connection pins, one for the green, one for the red light and a grounding pin. Due to this 3 pin design, it was rather easy to control which color of the led should be active.
+
+
+\subsubsection{Servo motor}
+A servo motor was powered by 5 volts from the Arduino. The servo motor had three connection ports. One for the ground, one for the voltage and one for the signal.  As already discussed earlier, a signal is given when a car is detected on the pressure sensor provided however that the counter for the free spaces is not at zero.
+
+
+
+
+\section{Experiments}
+For the purpose of testing our parking concept, each part was tested  separately. First, the sensor was  encoded and its accuracy was tested. As the first results appeared to be satisfactory, other required components were identified and purchased. Upon delivery of the LED’s some were programmed to indicate red or green according to a car being on the parking spot or not. The other LED’s were programmed to guide the car through the path towards the right available spot. This was the rather difficult part of the project.   First, it was tested out for 1 parking spot, and after being operational it was tried out for all parking spots together. In the beginning the process time for all parking lots working together appeared to be very slow. It took quite some time before the sensor could detect the presence of a car. After optimizing the code, the sensor detected the car immediately. The next part was to design the parking lot itself.
+
+
+\begin{figure}[H]
+\begin{center}
+
+   \includegraphics[width=1.0\linewidth]{Afbeelding1.eps}
+\end{center}
+   \caption{A 3D render of our car park}
+\label{fig:long}
+\label{fig:onecol}
+\end{figure}
+
+
+
+First a 3D render of the car park was created. A picture of the render is shown in figure 2. Once the render was finalized, it was made to reality. The programming of the barrier motor and the pressure sensor, was the next challenge. The tests revealed that the self made pressure sensor stopped working after a while, as the 2 aluminum pieces stayed connected to each other. As a final step, all components had to be connected to the Arduino. It was a real challenge as it involved the connection of lot of cables which was really difficult. Often some cables were disconnected from the Arduino and as such certain functions stopped working.           
+ 
+\section{Conclusion}
+As a conclusion it can be stated that the developed smart parking system was a success. With the system as described herein, cars can easily and much faster find a free parking spot. The final scale version is shown in figure 3. In further work, the functionality for detecting the free spots or even to reserve a free spot could be implemented on a smartphone application. An other option could consist in linking the parking lot with the in-car GPS- system, in such a manner that the car GPS can guide a car straight to the free spot. 
+
+\begin{figure}[H]
+\begin{center}
+
+   \includegraphics[width=1.0\linewidth]{project1.eps}
+\end{center}
+   \caption{Our practical implementation}
+\label{fig:long}
+\label{fig:onecol}
+\end{figure}
+
+{\small
+\bibliographystyle{ieee_fullname}
+\bibliography{egbib}
+}
+[1] Figure 1: Ultrasonic sensor working principe, http://www.mtechlog.com/2015/09/using-ultrasonic-sensor-with-arduino.html, 02-11-2017
+
+[2] Led connection, {http://be.farnell.com/kingbright/l-59egw/led-bi-col-5-mm-red-grn-3-pins/dp/2001770, 15-11-2017
+\end{document}
